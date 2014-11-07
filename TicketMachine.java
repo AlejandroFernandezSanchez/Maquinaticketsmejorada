@@ -82,8 +82,8 @@ public class TicketMachine
             balance = balance - price;
         }
         else {
-            System.out.println("You must insert at least: " +
-                               (price - balance) + " more cents.");
+            int amountLeftToPay=price-balance;
+           
                     
         }
     }
@@ -98,5 +98,22 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
+    }
+    
+    public int getAmountLeftToPay()
+    {
+          int AmountLeftToPay;
+          AmountLeftToPay = price-balance;
+          return AmountLeftToPay;
+
+    }
+    
+    public int emptyMachine()
+    {
+        int totalMoney;
+        totalMoney=balance+total;
+        balance=0;
+        total=0;
+        return totalMoney;
     }
 }
