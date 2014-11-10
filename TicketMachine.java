@@ -14,9 +14,9 @@ public class TicketMachine
     // The price of a ticket from this machine.
     private int price;
     // The amount of money entered by a customer so far.
-    private int balance;
+    private float balance;
     // The total amount of money collected by this machine.
-    private int total;
+    private float total;
 
     /**
      * Create a machine that issues tickets of the given price.
@@ -40,7 +40,7 @@ public class TicketMachine
      * Return The amount of money already inserted for the
      * next ticket.
      */
-    public int getBalance()
+    public float getBalance()
     {
         return balance;
     }
@@ -82,36 +82,63 @@ public class TicketMachine
             balance = balance - price;
         }
         else {
-            int amountLeftToPay=price-balance;
+            float amountLeftToPay=price-balance;
             System.out.println("You must insert at least: " +
                                amountLeftToPay + " more cents.");
                     
         }
     }
+    
+    /**
+     * Imprime un ticket con 10% de descuento
+     */
+    public void printTicketD()
+    { float discount = 10;
+        if(balance >= price*((100.0f-discount)/100.0f)) {
+            // Simulate the printing of a ticket.
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + (price*((100.0f-discount)/100.0f)) + " cents.");
+            System.out.println("##################");
+            System.out.println();
 
+            // Update the total collected with the price.
+            total = total +( price*((100.0f-discount)/100.0f));
+            // Reduce the balance by the prince.
+            balance = balance - price*((100.0f-discount)/100.0f);
+        }
+        else {
+            float amountLeftToPay=price*((100.0f-discount)/100.0f)-balance;
+            System.out.println("You must insert at least: " +
+                               amountLeftToPay + " more cents.");
+                    
+        }
+    }
+    
     /**
      * Return the money in the balance.
      * The balance is cleared.
      */
-    public int refundBalance()
+    public float refundBalance()
     {
-        int amountToRefund;
+        float amountToRefund;
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
     }
     
-    public int getAmountLeftToPay()
+    public float getAmountLeftToPay()
     {
-          int AmountLeftToPay;
+          float AmountLeftToPay;
           AmountLeftToPay = price-balance;
           return AmountLeftToPay;
 
     }
     
-    public int emptyMachine()
+    public float emptyMachine()
     {
-        int totalMoney;
+        float totalMoney;
         totalMoney=balance+total;
         balance=0;
         total=0;
